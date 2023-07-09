@@ -1,3 +1,3 @@
 ARG ELASTIC_VERSION
 
-FROM docker.elastic.co/beats/heartbeat:${ELASTIC_VERSION}
+FROM elastic/heartbeat:${ELASTIC_VERSION}
