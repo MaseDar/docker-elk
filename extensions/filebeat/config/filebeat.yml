@@ -9,6 +9,13 @@ filebeat.config:
     path: ${path.config}/modules.d/*.yml
     reload.enabled: false
 
+filebeat.inputs:
+  - type: log
+    paths:
+      - C:\hub\refook\core\log\dev\core.log
+output.logstash:
+  hosts: ["localhost:5044"]
+
 filebeat.autodiscover:
   providers:
     # The Docker autodiscover provider automatically retrieves logs from Docker
@@ -26,7 +33,7 @@ monitoring:
     password: ${BEATS_SYSTEM_PASSWORD}
 
 output.elasticsearch:
-  hosts: [ http://elasticsearch:9200 ]
+  hosts: [http://elasticsearch:9200]
   username: filebeat_internal
   password: ${FILEBEAT_INTERNAL_PASSWORD}
 
