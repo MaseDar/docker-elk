@@ -3,6 +3,9 @@
 #
 
 name: filebeat
+http:
+  enabled: true
+  host: 0.0.0.0
 
 filebeat.config:
   modules:
@@ -11,36 +14,53 @@ filebeat.config:
 
 filebeat.inputs:
   - type: log
+    enabled: true
     paths:
-      - C:\hub\refook\core\log\dev\core.log
+      - "./log/*.log"
+
+# logging:
+#   level: debug
+#   selectors: ["publish"]
+#   metrics:
+#     enabled: false
+
 output.logstash:
-  hosts: ["localhost:5044"]
+  hosts: ["logstash:5044"]
+# filebeat.autodiscover:
+#   providers:
+#     # The Docker autodiscover provider automatically retrieves logs from Docker
+#     # containers as they start and stop.
+#     - type: docker
+#       hints.enabled: true
+#       labels.dedot: true
+#       hints.default_config:
+#         # templates:
+#         #   - condition.contains:
+#         #       container.labels.collect_logs_with_filebeat: "true"
+#         #     config:
+#         - type: container
+#           # format: docker
+#           paths:
+#             - "/var/lib/docker/containers/${data.docker.container.id}/*.log"
+#             - "/log/*.log"
+# processors:
+#   - add_cloud_metadata: ~
 
-filebeat.autodiscover:
-  providers:
-    # The Docker autodiscover provider automatically retrieves logs from Docker
-    # containers as they start and stop.
-    - type: docker
-      hints.enabled: true
+# monitoring:
+#   enabled: true
+#   elasticsearch:
+#     username: beats_system
+#     password: ${BEATS_SYSTEM_PASSWORD}
 
-processors:
-  - add_cloud_metadata: ~
-
-monitoring:
-  enabled: true
-  elasticsearch:
-    username: beats_system
-    password: ${BEATS_SYSTEM_PASSWORD}
-
-output.elasticsearch:
-  hosts: [http://elasticsearch:9200]
-  username: filebeat_internal
-  password: ${FILEBEAT_INTERNAL_PASSWORD}
+# output.elasticsearch:
+#   hosts: [http://elasticsearch:9200]
+#   username: filebeat_internal
+#   password: ${FILEBEAT_INTERNAL_PASSWORD}
 
 ## HTTP endpoint for health checking
 ## https://www.elastic.co/guide/en/beats/filebeat/current/http-endpoint.html
 #
 
-http:
-  enabled: true
-  host: 0.0.0.0
+# output.logstash:
+#   hosts: ["logstash:5044"]
+

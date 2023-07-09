@@ -3,5 +3,13 @@
 ## https://github.com/elastic/logstash/blob/main/docker/data/logstash/config/logstash-full.yml
 #
 http.host: 0.0.0.0
-
 node.name: logstash
+xpack:
+  monitoring:
+    enabled: true
+    elasticsearch:
+      #       username: "logstash_internal"
+      #       password: ${LOGSTASH_INTERNAL_PASSWORD}
+      #       hosts: ["http://elasticsearch:9200"]
+      ssl:
+        verification_mode: none

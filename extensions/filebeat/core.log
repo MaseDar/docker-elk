@@ -1,0 +1,46 @@
+2023-07-09 20:38:08 [2023-07-09T17:38:08,202][INFO ][logstash.javapipeline    ][main] Starting pipeline {:pipeline_id=>"main", "pipeline.workers"=>4, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>50, "pipeline.max_inflight"=>500, "pipeline.sources"=>["/usr/share/logstash/pipeline/logstash.conf"], :thread=>"#<Thread:0x4655561f@/usr/share/logstash/logstash-core/lib/logstash/java_pipeline.rb:134 run>"}
+2023-07-09 20:38:12 [2023-07-09T17:38:12,023][INFO ][logstash.javapipeline    ][main] Pipeline Java execution initialization time {"seconds"=>3.82}
+2023-07-09 20:38:12 [2023-07-09T17:38:12,854][INFO ][logstash.inputs.beats    ][main] Starting input listener {:address=>"0.0.0.0:5044"}
+2023-07-09 20:38:12 [2023-07-09T17:38:12,879][INFO ][logstash.javapipeline    ][main] Pipeline started {"pipeline.id"=>"main"}
+2023-07-09 20:38:12 [2023-07-09T17:38:12,920][INFO ][logstash.inputs.tcp      ][main][3bf2dbeec8771a4e91ba7d91fe3b758cfcd38c2548d3d62085ed9bd18548341c] Starting tcp input listener {:address=>"0.0.0.0:50000", :ssl_enable=>false}
+2023-07-09 20:38:12 [2023-07-09T17:38:12,951][INFO ][logstash.agent           ] Pipelines running {:count=>1, :running_pipelines=>[:main], :non_running_pipelines=>[]}
+2023-07-09 20:38:13 [2023-07-09T17:38:13,094][INFO ][org.logstash.beats.Server][main][7c546e240fc5d1d369608cca2b038485a806cbd9a8ef2de96c7d7f74cb77ae2d] Starting server on port: 5044
+2023-07-09 20:38:13 [2023-07-09T17:38:13,156][INFO ][logstash.outputs.elasticsearch][main] Failed to perform request {:message=>"Connect to elasticsearch:9200 [elasticsearch/172.22.0.2] failed: Connection refused", :exception=>Manticore::SocketException, :cause=>#<Java::OrgApacheHttpConn::HttpHostConnectException: Connect to elasticsearch:9200 [elasticsearch/172.22.0.2] failed: Connection refused>}
+2023-07-09 20:38:13 [2023-07-09T17:38:13,157][WARN ][logstash.outputs.elasticsearch][main] Attempted to resurrect connection to dead ES instance, but got an error {:url=>"http://elasticsearch:9200/", :exception=>LogStash::Outputs::ElasticSearch::HttpClient::Pool::HostUnreachableError, :message=>"Elasticsearch Unreachable: [http://elasticsearch:9200/][Manticore::SocketException] Connect to elasticsearch:9200 [elasticsearch/172.22.0.2] failed: Connection refused"}
+2023-07-09 20:38:18 [2023-07-09T17:38:18,512][WARN ][logstash.outputs.elasticsearch][main] Restored connection to ES instance {:url=>"http://elasticsearch:9200/"}
+2023-07-09 20:38:18 [2023-07-09T17:38:18,796][INFO ][logstash.outputs.elasticsearch][main] Elasticsearch version determined (8.8.1) {:es_version=>8}
+2023-07-09 20:38:18 [2023-07-09T17:38:18,796][WARN ][logstash.outputs.elasticsearch][main] Detected a 6.x and above cluster: the `type` event field won't be used to determine the document _type {:es_version=>8}
+2023-07-09 20:38:22 [2023-07-09T17:38:22,213][INFO ][logstash.outputs.elasticsearch][main] Using a default mapping template {:es_version=>8, :ecs_compatibility=>:v8}
+2023-07-09 20:48:17 {
+2023-07-09 20:48:17        "message" => "asdasdasdasd",
+2023-07-09 20:48:17            "ecs" => {
+2023-07-09 20:48:17         "version" => "8.0.0"
+2023-07-09 20:48:17     },
+2023-07-09 20:48:17       "@version" => "1",
+2023-07-09 20:48:17          "agent" => {
+2023-07-09 20:48:17                   "id" => "e3f30b36-94bb-46fa-9255-5de4c97461ef",
+2023-07-09 20:48:17                 "type" => "filebeat",
+2023-07-09 20:48:17              "version" => "8.8.1",
+2023-07-09 20:48:17                 "name" => "filebeat",
+2023-07-09 20:48:17         "ephemeral_id" => "6d11fcbe-ac8e-4781-af5e-c369c138a795"
+2023-07-09 20:48:17     },
+2023-07-09 20:48:17     "@timestamp" => 2023-07-09T17:48:15.167Z,
+2023-07-09 20:48:17           "host" => {
+2023-07-09 20:48:17         "name" => "filebeat"
+2023-07-09 20:48:17     },
+2023-07-09 20:48:17            "log" => {
+2023-07-09 20:48:17         "offset" => 0,
+2023-07-09 20:48:17           "file" => {
+2023-07-09 20:48:17             "path" => "/usr/share/filebeat/log/core.log"
+2023-07-09 20:48:17         }
+2023-07-09 20:48:17     },
+2023-07-09 20:48:17          "input" => {
+2023-07-09 20:48:17         "type" => "log"
+2023-07-09 20:48:17     },
+2023-07-09 20:48:17           "tags" => [
+2023-07-09 20:48:17         [0] "beats_input_codec_plain_applied"
+2023-07-09 20:48:17     ],
+2023-07-09 20:48:17          "event" => {
+2023-07-09 20:48:17         "original" => "asdasdasdasd"
+2023-07-09 20:48:17     }
+2023-07-09 20:48:17 }
