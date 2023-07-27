@@ -23,9 +23,30 @@ filebeat.inputs:
 #   selectors: ["publish"]
 #   metrics:
 #     enabled: false
+filebeat.autodiscover:
+  providers:
+    # искать docker контейнер
+    - type: docker
+      templates:
+        - condition:
+            contains:
+              docker.container.name: config
+          # определим конфигурацию сбора для этого контейнера
+          config:
+            - type: container
+              paths:
+                - /var/lib/docker/containers/${data.docker.container.id}/*.log
+              # исключим лог-сообщения asgi-сервера
+#              exclude_lines: ["^INFO:"]
 
-output.logstash:
-  hosts: ["logstash:5044"]
+
+output:
+  logstash:
+    hosts: ["logstash:5044"]
+    # Пока будем выводить лог-сообщения в консоль
+#  console:
+#    pretty: true
+
 # filebeat.autodiscover:
 #   providers:
 #     # The Docker autodiscover provider automatically retrieves logs from Docker
