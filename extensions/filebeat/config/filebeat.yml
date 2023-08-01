@@ -31,14 +31,31 @@ filebeat.autodiscover:
         - condition:
             contains:
               docker.container.name: config
-          # определим конфигурацию сбора для этого контейнера
+          config:
+            - type: container
+              paths:
+                - /var/lib/docker/containers/${data.docker.container.id}/*.log\
+        - condition:
+            contains:
+              docker.container.name: gateway
           config:
             - type: container
               paths:
                 - /var/lib/docker/containers/${data.docker.container.id}/*.log
-              # исключим лог-сообщения asgi-сервера
-#              exclude_lines: ["^INFO:"]
-
+        - condition:
+            contains:
+              docker.container.name: core
+          config:
+            - type: container
+              paths:
+                - /var/lib/docker/containers/${data.docker.container.id}/*.log
+        - condition:
+            contains:
+              docker.container.name: kafka
+          config:
+            - type: container
+              paths:
+                - /var/lib/docker/containers/${data.docker.container.id}/*.log
 
 output:
   logstash:
