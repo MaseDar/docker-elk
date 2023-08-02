@@ -149,18 +149,27 @@ services:
       context: keycloak/
       args:
         KEYCLOAK_VERSION: ${KEYCLOAK_VERSION}
+
+    hostname: keycloak
+    container_name: keycloak
     command:
       - start-dev
+    volumes:
+      - /var/lib/keycloak
     ports:
       - 8090:8080
     environment:
       KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-}
     restart: unless-stopped
+    networks:
+      - keycloak-network
 
 networks:
   elk:
     driver: bridge
+  keycloak-network:
+    name: keycloak-network
 
 volumes:
   elasticsearch:
