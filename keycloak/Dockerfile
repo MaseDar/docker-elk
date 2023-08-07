@@ -1,3 +1,0 @@
-ARG KEYCLOAK_VERSION
-
-FROM quay.io/keycloak/keycloak:${KEYCLOAK_VERSION}
